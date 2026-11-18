@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect Oura</title><style>body{font:17px system-ui;max-width:650px;margin:60px auto;padding:20px;color:#17253b}button{background:#1459aa;color:white;border:0;border-radius:10px;padding:14px 22px;font-size:17px}</style></head><body><h1>Connect Oura</h1><p>This authorizes read-only access to your daily Oura sleep summary. No client secret is needed.</p><button id="connect">Authorize Oura</button><p id="status"></p><script>
+const clientId='12bc7197-652e-4b46-8747-3bd70f64ca6b';
+const redirect='https://ashishhpatel.github.io/sleep-widget/callback.html';
+document.getElementById('connect').onclick=()=>{const state=Array.from(crypto.getRandomValues(new Uint8Array(24)),b=>b.toString(16).padStart(2,'0')).join('');sessionStorage.setItem('oura_oauth_state',state);const p=new URLSearchParams({response_type:'token',client_id:clientId,redirect_uri:redirect,scope:'daily',state});location.href='https://cloud.ouraring.com/oauth/authorize?'+p.toString();};
+</script></body></html>
